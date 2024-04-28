@@ -1,0 +1,10 @@
+main {
+    background-color: #369e6c;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+#test {
+    height: 600px;
+    width: 600px;
+}

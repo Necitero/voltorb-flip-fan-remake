@@ -1,7 +1,14 @@
 import './App.css'
+import { CardField } from './components/molecules/card-field/card-field'
 
 function App() {
-    return <h1>Test</h1>
+    return (
+        <main>
+            <div id="test">
+                <CardField amount={5} />
+            </div>
+        </main>
+    )
 }
 
 export default App
