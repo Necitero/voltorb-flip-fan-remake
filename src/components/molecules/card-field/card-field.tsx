@@ -1,26 +1,19 @@
 import { Card } from '../../atoms/card/card'
 import './card-field.css'
 
+import { ValueOptions } from '../../../scripts/game-logic'
+
 interface CardFieldProps {
-    amount: number
+    playField: ValueOptions[][]
 }
 
-export const CardField = ({ amount }: CardFieldProps) => {
-    const playField = [
-        [1, 2, 3, 4, 5],
-        [1, 2, 3, 4, 5],
-        [1, 2, 3, 4, 5],
-        [1, 2, 3, 4, 5],
-        [1, 2, 3, 4, 5],
-    ]
+export const CardField = ({ playField }: CardFieldProps) => {
+    // getRowAndColumnTotals(playField)
 
     return (
-        <div
-            className="card-field"
-            style={{ '--columns': amount } as React.CSSProperties}
-        >
+        <div className="card-field">
             {playField.map((a) => {
-                return a.map((b) => <Card key={b} />)
+                return a.map((b: ValueOptions) => <Card value={b} />)
             })}
         </div>
     )

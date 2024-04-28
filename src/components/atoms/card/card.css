@@ -36,3 +36,19 @@
 .card-tile:nth-child(even) {
     background-color: #33a366;
 }
+
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-back > p {
+    margin: 0;
+    padding: 0;
+}

@@ -6,10 +6,13 @@ interface VoltorbCardProps {
 }
 
 export const VoltorbCard = ({ points, bombs }: VoltorbCardProps) => {
+    const pointString = points.toString()
     return (
         <div className={`voltorb-card`}>
             <div className="voltorb-card__point-digit">
-                <span>0{points}</span>
+                <span>
+                    {pointString.length === 1 ? `0${pointString}` : pointString}
+                </span>
             </div>
             <div className="voltorb-card__bomb-digit">
                 <div className="voltorb-card__sprite" />

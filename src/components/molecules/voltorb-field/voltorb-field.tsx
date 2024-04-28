@@ -1,16 +1,17 @@
 import { VoltorbCard } from '../../atoms/voltorb-card/voltorb-card'
 import './voltorb-field.css'
+import { ValueSummaries } from '../../../scripts/game-logic'
 
 interface VoltorbFieldProps {
     orientation: 'vertical' | 'horizontal'
-    amount: number
+    summaries: ValueSummaries[]
 }
 
-export const VoltorbField = ({ orientation, amount }: VoltorbFieldProps) => {
+export const VoltorbField = ({ orientation, summaries }: VoltorbFieldProps) => {
     return (
         <div className={`voltorb-field ${orientation}`}>
-            {[...Array(amount)].map((a) => (
-                <VoltorbCard points={3} bombs={2} key={a} />
+            {summaries.map((a, index) => (
+                <VoltorbCard points={a.points} bombs={a.bombs} key={index} />
             ))}
         </div>
     )
