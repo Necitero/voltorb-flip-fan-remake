@@ -1,2 +1,3 @@
-# voltorb-flip-fan-remake
- A fan remake of Pokemon's HG/SS "Voltorb Flip" in React
+# Voltorb Flip Fan Remake
+
+This is a fan remake of the Pokemon HG/SS minigame "Voltorb Flip"
