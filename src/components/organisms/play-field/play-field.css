@@ -1,0 +1,21 @@
+.play-field {
+    display: grid;
+    grid-template-areas:
+        'a a a a a b'
+        'a a a a a b'
+        'a a a a a b'
+        'a a a a a b'
+        'c c c c c .';
+}
+
+.play-field .card-field {
+    grid-area: a;
+}
+
+.play-field .voltorb-field.vertical {
+    grid-area: b;
+}
+
+.play-field .voltorb-field.horizontal {
+    grid-area: c;
+}
