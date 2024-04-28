@@ -12,7 +12,7 @@ export const VoltorbCard = ({ points, bombs }: VoltorbCardProps) => {
                 <span>0{points}</span>
             </div>
             <div className="voltorb-card__bomb-digit">
-                <img src="/images/voltorb.png" />
+                <div className="voltorb-card__sprite" />
                 <span>{bombs}</span>
             </div>
         </div>

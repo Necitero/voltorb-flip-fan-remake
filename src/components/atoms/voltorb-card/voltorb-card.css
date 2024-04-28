@@ -19,12 +19,15 @@
     border-bottom: 4px solid white;
 }
 
-.voltorb-card img {
+.voltorb-card__sprite {
     display: inline-block;
-    height: 20px;
-    aspect-ratio: 1/1;
+    height: 75%;
+    background-image: url('/images/voltorb.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    aspect-ratio: 1 / 1;
     vertical-align: sub;
-    height: 42px;
     margin-right: 20px;
 }
 
