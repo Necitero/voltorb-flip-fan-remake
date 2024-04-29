@@ -2,11 +2,11 @@
 
 const size = 5
 
-export type ValueOptions = '1' | '2' | '3' | 'Bomb'
+export type ValueOptions = '1' | '2' | '3' | '0'
 
 export function generateField(): ValueOptions[][] {
     const fieldArray: ValueOptions[][] = []
-    const values = ['1', '2', '3', 'Bomb']
+    const values = ['1', '2', '3', '0']
 
     fieldArray.pop()
     for (let i = 0; i < size; i++) {
@@ -32,13 +32,11 @@ export interface ValueSummaries {
 }
 
 function getBombAmount(arr: string[]) {
-    return arr.filter((a) => a === 'Bomb').length
+    return arr.filter((a) => a === '0').length
 }
 
 function getPointAmount(arr: string[]) {
-    return arr
-        .filter((a) => a !== 'Bomb')
-        .reduce((sum, a) => sum + Number(a), 0)
+    return arr.filter((a) => a !== '0').reduce((sum, a) => sum + Number(a), 0)
 }
 
 export function getRowAndColumnTotals(field: ValueOptions[][]): ValueSummary {

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { ValueOptions } from '../../../scripts/game-logic'
 import './card.css'
 
@@ -6,17 +7,38 @@ interface CardProps {
 }
 
 export const Card = ({ value }: CardProps) => {
+    const [flipped, setFlip] = useState(false)
+    const [shown, setShown] = useState(false)
     const cardTiles = 9
+    const usedValue =
+        value !== '0' ? (
+            value
+        ) : (
+            <img className="card-back-bomb" src="/images/voltorb.png" />
+        )
+
+    function awaitShown() {
+        setShown(true)
+    }
 
     return (
-        <div className="card">
+        <div
+            className={`card ${flipped ? 'flipped' : ''}`}
+            onClick={() => setFlip(true)}
+            onAnimationEnd={awaitShown}
+        >
             <div className="card-inner">
-                {[...Array(cardTiles)].map((a) => (
-                    <div className="card-tile" key={a} />
-                ))}
-                <div className="card-back">
-                    <p>{value}</p>
-                </div>
+                {!flipped ? (
+                    [...Array(cardTiles)].map((a) => (
+                        <div className="card-tile" key={a} />
+                    ))
+                ) : (
+                    <div className="card-back">
+                        <p className="card-back-value noselect">
+                            {shown && usedValue}
+                        </p>
+                    </div>
+                )}
             </div>
         </div>
     )

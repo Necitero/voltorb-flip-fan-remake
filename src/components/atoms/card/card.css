@@ -3,6 +3,13 @@
     aspect-ratio: 1/1;
     border: 4px solid white;
     border-radius: 4px;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    position: relative;
+}
+
+.card.flipped {
+    animation: flipCard 0.4s ease-out forwards;
 }
 
 .card:hover {
@@ -48,7 +55,28 @@
     align-items: center;
 }
 
-.card-back > p {
+.card-back-value {
     margin: 0;
     padding: 0;
+    position: relative;
+    transform: rotateY(180deg);
+    pointer-events: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    line-height: 52px;
+}
+
+.card-back-bomb {
+    height: 100%;
+    width: 100%;
+    padding: 8px 12px 0;
+}
+
+@keyframes flipCard {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(180deg);
+    }
 }

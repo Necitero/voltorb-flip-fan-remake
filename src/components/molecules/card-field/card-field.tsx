@@ -8,8 +8,6 @@ interface CardFieldProps {
 }
 
 export const CardField = ({ playField }: CardFieldProps) => {
-    // getRowAndColumnTotals(playField)
-
     return (
         <div className="card-field">
             {playField.map((a) => {
