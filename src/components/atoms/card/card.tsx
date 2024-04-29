@@ -1,5 +1,9 @@
 import { useState } from 'react'
-import { ValueOptions } from '../../../scripts/game-logic'
+import {
+    ValueOptions,
+    setGameStatus,
+    getGameStatus,
+} from '../../../scripts/game-logic'
 import './card.css'
 
 interface CardProps {
@@ -19,6 +23,9 @@ export const Card = ({ value }: CardProps) => {
 
     function awaitShown() {
         setShown(true)
+        if (value === '0' && getGameStatus() === 'running') {
+            setGameStatus('gameover')
+        }
     }
 
     return (
