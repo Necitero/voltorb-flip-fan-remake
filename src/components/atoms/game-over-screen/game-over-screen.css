@@ -1,0 +1,19 @@
+.game-over-screen {
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.game-over-screen.active {
+    display: flex;
+}

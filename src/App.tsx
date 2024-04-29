@@ -1,19 +1,13 @@
 import { PlayField } from './components/organisms/play-field/play-field'
 import './App.css'
+import { GameOverScreen } from './components/atoms/game-over-screen/game-over-screen'
 
 function App() {
-    document.addEventListener(
-        'game-status',
-        (e: CustomEvent) => {
-            console.log(e)
-        },
-        { once: true }
-    )
-
     return (
         <main>
             <div id="test">
                 <PlayField />
+                <GameOverScreen />
             </div>
         </main>
     )
