@@ -2,23 +2,33 @@
 
 const size = 5
 let gameStatus: 'running' | 'gameover' | 'win' = 'running'
+let totalAchievablePoints: number = 0
+let fieldArraySave: ValueOptions[][] = []
+let generated: boolean = false
 
 export type ValueOptions = 1 | 2 | 3 | 0
 
 export function generateField(): ValueOptions[][] {
+    if (generated) return fieldArraySave
     const fieldArray: ValueOptions[][] = []
     const values = [1, 2, 3, 0]
-
+    totalAchievablePoints = 0
     fieldArray.pop()
+
     for (let i = 0; i < size; i++) {
         const row = []
         for (let ii = 0; ii < size; ii++) {
             const generatedValue =
                 values[Math.floor(Math.random() * values.length)]
+            if (generatedValue > 1) {
+                totalAchievablePoints = totalAchievablePoints + generatedValue
+            }
             row.push(generatedValue)
         }
         fieldArray.push(row as ValueOptions[])
     }
+    fieldArraySave = fieldArray
+    generated = true
     return fieldArray
 }
 
@@ -67,4 +77,11 @@ export function setGameStatus(status: 'gameover' | 'running' | 'win') {
 
 export function getGameStatus() {
     return gameStatus
+}
+
+export function reduceAchievablePointsBy(amount: number) {
+    totalAchievablePoints = totalAchievablePoints - amount
+    if (totalAchievablePoints === 0) {
+        setGameStatus('win')
+    }
 }

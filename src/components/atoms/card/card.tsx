@@ -3,6 +3,7 @@ import {
     ValueOptions,
     setGameStatus,
     getGameStatus,
+    reduceAchievablePointsBy,
 } from '../../../scripts/game-logic'
 import './card.css'
 
@@ -25,6 +26,10 @@ export const Card = ({ value }: CardProps) => {
         setShown(true)
         if (value === 0 && getGameStatus() === 'running') {
             setGameStatus('gameover')
+            return
+        }
+        if (value > 1) {
+            reduceAchievablePointsBy(value)
         }
     }
 
