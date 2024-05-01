@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './win-screen.css'
+import { Message } from '../../atoms/message/message'
 
 export const WinScreen = () => {
     const [winState, setWinState] = useState(false)
@@ -16,7 +17,7 @@ export const WinScreen = () => {
 
     return (
         <div className={`win-screen ${winState ? 'active' : ''}`}>
-            You won ! Poggus Champus
+            <Message text="Board clear!" />
         </div>
     )
 }

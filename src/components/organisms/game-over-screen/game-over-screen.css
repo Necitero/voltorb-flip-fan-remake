@@ -6,13 +6,10 @@
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.3);
-    justify-content: center;
-    align-items: center;
-    font-size: 80px;
-    font-weight: bold;
-    color: white;
 }
 
 .game-over-screen.active {
     display: flex;
+    flex-direction: column;
+    justify-content: end;
 }

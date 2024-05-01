@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './game-over-screen.css'
+import { Message } from '../../atoms/message/message'
 
 export const GameOverScreen = () => {
     const [gameOver, setGameOver] = useState(false)
@@ -16,7 +17,7 @@ export const GameOverScreen = () => {
 
     return (
         <div className={`game-over-screen ${gameOver ? 'active' : ''}`}>
-            You lost lol
+            <Message text="You lost!" />
         </div>
     )
 }
