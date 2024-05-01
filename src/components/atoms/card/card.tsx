@@ -15,7 +15,7 @@ export const Card = ({ value }: CardProps) => {
     const [shown, setShown] = useState(false)
     const cardTiles = 9
     const usedValue =
-        value !== '0' ? (
+        value !== 0 ? (
             value
         ) : (
             <img className="card-back-bomb" src="/images/voltorb.png" />
@@ -23,7 +23,7 @@ export const Card = ({ value }: CardProps) => {
 
     function awaitShown() {
         setShown(true)
-        if (value === '0' && getGameStatus() === 'running') {
+        if (value === 0 && getGameStatus() === 'running') {
             setGameStatus('gameover')
         }
     }

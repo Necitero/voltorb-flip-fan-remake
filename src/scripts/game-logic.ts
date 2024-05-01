@@ -3,11 +3,11 @@
 const size = 5
 let gameStatus: 'running' | 'gameover' = 'running'
 
-export type ValueOptions = '1' | '2' | '3' | '0'
+export type ValueOptions = 1 | 2 | 3 | 0
 
 export function generateField(): ValueOptions[][] {
     const fieldArray: ValueOptions[][] = []
-    const values = ['1', '2', '3', '0']
+    const values = [1, 2, 3, 0]
 
     fieldArray.pop()
     for (let i = 0; i < size; i++) {
@@ -32,30 +32,29 @@ export interface ValueSummaries {
     bombs: number
 }
 
-function getBombAmount(arr: string[]) {
-    return arr.filter((a) => a === '0').length
+function getBombAmount(arr: number[]) {
+    return arr.filter((a) => a === 0).length
 }
 
-function getPointAmount(arr: string[]) {
-    return arr.filter((a) => a !== '0').reduce((sum, a) => sum + Number(a), 0)
+function getPointAmount(arr: number[]) {
+    return arr.filter((a) => a !== 0).reduce((sum, a) => sum + Number(a), 0)
 }
 
 export function getRowAndColumnTotals(field: ValueOptions[][]): ValueSummary {
     const rows: ValueSummaries[] = []
-    for (let i = 0; i < size; i++) {
-        const bombs = getBombAmount(field[i])
-        const points = getPointAmount(field[i])
-        rows.push({ points, bombs })
-    }
     const cols: ValueSummaries[] = []
     for (let i = 0; i < size; i++) {
         const columnValues = []
         for (let ii = 0; ii < size; ii++) {
             columnValues.push(field[ii][i])
         }
-        const bombs = getBombAmount(columnValues)
-        const points = getPointAmount(columnValues)
-        cols.push({ points, bombs })
+
+        const rowBombs = getBombAmount(field[i])
+        const rowPoints = getPointAmount(field[i])
+        const colBombs = getBombAmount(columnValues)
+        const colPoints = getPointAmount(columnValues)
+        cols.push({ points: colPoints, bombs: colBombs })
+        rows.push({ points: rowPoints, bombs: rowBombs })
     }
     return { rows, cols }
 }
