@@ -1,7 +1,7 @@
 // interface FieldItems {}
 
 const size = 5
-let gameStatus: 'running' | 'gameover' = 'running'
+let gameStatus: 'running' | 'gameover' | 'win' = 'running'
 
 export type ValueOptions = 1 | 2 | 3 | 0
 
@@ -59,7 +59,7 @@ export function getRowAndColumnTotals(field: ValueOptions[][]): ValueSummary {
     return { rows, cols }
 }
 
-export function setGameStatus(status: 'gameover' | 'running') {
+export function setGameStatus(status: 'gameover' | 'running' | 'win') {
     const event = new CustomEvent('game-status', { detail: status })
     document.dispatchEvent(event)
     gameStatus = status

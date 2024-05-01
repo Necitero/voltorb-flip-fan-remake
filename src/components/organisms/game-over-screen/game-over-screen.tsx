@@ -6,8 +6,10 @@ export const GameOverScreen = () => {
     document.addEventListener(
         'game-status',
         (e: CustomEvent) => {
-            console.log(e)
-            setGameOver(true)
+            const { detail } = e
+            if (detail === 'gameover') {
+                setGameOver(true)
+            }
         },
         { once: true }
     )
