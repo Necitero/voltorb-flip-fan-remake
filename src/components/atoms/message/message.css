@@ -1,0 +1,14 @@
+.message {
+    width: 100%;
+    background: linear-gradient(0deg, #131315 0 3%, #333338 10% 100%);
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 4px 24px 4px 8px;
+}
+
+.message-inner {
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+    height: 56px;
+}
