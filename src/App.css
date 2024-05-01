@@ -4,7 +4,15 @@ main {
     min-width: 100vw;
 }
 
-#test {
-    height: 720px;
-    width: 720px;
+p,
+span {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#game {
+    width: 90%;
+    margin: 0 auto;
 }

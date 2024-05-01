@@ -5,7 +5,7 @@ import { GameOverScreen } from './components/atoms/game-over-screen/game-over-sc
 function App() {
     return (
         <main>
-            <div id="test">
+            <div id="game">
                 <PlayField />
                 <GameOverScreen />
             </div>

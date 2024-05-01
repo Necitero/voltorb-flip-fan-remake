@@ -9,14 +9,24 @@
 
 .voltorb-card__point-digit,
 .voltorb-card__bomb-digit {
-    font-family: Arial, Helvetica, sans-serif;
-    padding-inline: 6px;
+    padding-inline: 4px;
     height: 50%;
     text-align: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: bold;
 }
 
 .voltorb-card__point-digit {
-    border-bottom: 4px solid white;
+    justify-content: end;
+    border-bottom: 2px solid white;
+    padding-top: 2px;
+}
+
+.voltorb-card__bomb-digit {
+    justify-content: space-between;
+    border-top: 2px solid white;
 }
 
 .voltorb-card__sprite {
@@ -27,11 +37,10 @@
     background-position: center;
     background-size: contain;
     aspect-ratio: 1 / 1;
-    vertical-align: sub;
-    margin-right: 20px;
+    margin-right: 4px;
 }
 
 .voltorb-card span {
-    font-size: 50px;
-    line-height: 52px;
+    font-size: 1rem;
+    line-height: 1.25rem;
 }
