@@ -1,7 +1,7 @@
 import { Card } from '../../atoms/card/card'
 import './card-field.css'
 
-import { ValueOptions } from '../../../scripts/game-logic'
+import { ValueOptions } from '../../../scripts/game-data'
 
 interface CardFieldProps {
     playField: ValueOptions[][]

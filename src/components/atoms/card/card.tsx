@@ -4,7 +4,7 @@ import {
     setGameStatus,
     getGameStatus,
     reduceAchievablePointsBy,
-} from '../../../scripts/game-logic'
+} from '../../../scripts/game-data'
 import './card.css'
 
 interface CardProps {

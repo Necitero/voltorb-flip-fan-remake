@@ -1,4 +1,4 @@
-import { gameData, ValueOptions } from '../App'
+import { gameData, ValueOptions } from './game-data'
 
 const size = 5
 
@@ -68,22 +68,4 @@ export function getRowAndColumnTotals(field: ValueOptions[][]): ValueSummary {
         rows.push({ points: rowPoints, bombs: rowBombs })
     }
     return { rows, cols }
-}
-
-export function setGameStatus(status: 'gameover' | 'running' | 'win') {
-    gameData.setState({ gameStatus: status })
-    console.log(gameData.getState().gameStatus)
-}
-
-export function getGameStatus() {
-    return gameData.getState().gameStatus
-}
-
-export function reduceAchievablePointsBy(amount: number) {
-    gameData.setState({
-        remainingPoints: gameData.getState().remainingPoints - amount,
-    })
-    if (gameData.getState().remainingPoints === 0) {
-        setGameStatus('win')
-    }
 }
