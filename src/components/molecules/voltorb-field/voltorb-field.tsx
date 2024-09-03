@@ -1,6 +1,6 @@
 import { VoltorbCard } from '../../atoms/voltorb-card/voltorb-card'
 import './voltorb-field.css'
-import { ValueSummaries } from '../../../scripts/game-logic'
+import { ValueSummaries } from '../../../scripts/game-data'
 
 interface VoltorbFieldProps {
     orientation: 'vertical' | 'horizontal'

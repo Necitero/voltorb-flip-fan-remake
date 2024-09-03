@@ -1,7 +1,7 @@
 import {
     generateField,
     getRowAndColumnTotals,
-} from '../../../scripts/game-logic'
+} from '../../../scripts/game-generation'
 import { CardField } from '../../molecules/card-field/card-field'
 import { VoltorbField } from '../../molecules/voltorb-field/voltorb-field'
 import './play-field.css'

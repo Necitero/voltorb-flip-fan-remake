@@ -1,5 +1,15 @@
 import { create } from 'zustand'
 
+export interface ValueSummary {
+    rows: ValueSummaries[]
+    cols: ValueSummaries[]
+}
+
+export interface ValueSummaries {
+    points: number
+    bombs: number
+}
+
 export type ValueOptions = 1 | 2 | 3 | 0
 type GameStatuses = 'running' | 'gameover' | 'win'
 interface gameDataProperties {
