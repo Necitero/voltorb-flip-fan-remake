@@ -32,7 +32,6 @@ export const Card = ({ value }: CardProps) => {
             gameData.setState((state) => ({
                 remainingPoints: state.remainingPoints - value,
             }))
-            console.log(gameData.getState().remainingPoints)
             if (gameData.getState().remainingPoints === 0) {
                 setGameStatus('win')
             }
