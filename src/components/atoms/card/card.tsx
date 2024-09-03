@@ -46,8 +46,8 @@ export const Card = ({ value }: CardProps) => {
         >
             <div className="card-inner">
                 {!flipped ? (
-                    [...Array(cardTiles)].map((a) => (
-                        <div className="card-tile" key={a} />
+                    [...Array(cardTiles)].map((a, index) => (
+                        <div className="card-tile" key={`${a}-${index}`} />
                     ))
                 ) : (
                     <div className="card-back">

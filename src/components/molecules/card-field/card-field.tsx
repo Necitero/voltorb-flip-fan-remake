@@ -10,8 +10,10 @@ interface CardFieldProps {
 export const CardField = ({ playField }: CardFieldProps) => {
     return (
         <div className="card-field">
-            {playField.map((a) => {
-                return a.map((b: ValueOptions) => <Card value={b} />)
+            {playField.map((a, aIndex) => {
+                return a.map((b: ValueOptions, bIndex) => (
+                    <Card value={b} key={`r${aIndex}-c${bIndex}`} />
+                ))
             })}
         </div>
     )
