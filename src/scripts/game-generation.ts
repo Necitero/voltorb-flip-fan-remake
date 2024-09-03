@@ -1,45 +1,35 @@
-// interface FieldItems {}
-
-const size = 5
-let gameStatus: 'running' | 'gameover' | 'win' = 'running'
-let totalAchievablePoints: number = 0
-let fieldArraySave: ValueOptions[][] = []
-let generated: boolean = false
-
-export type ValueOptions = 1 | 2 | 3 | 0
+import {
+    gameData,
+    ValueOptions,
+    ValueSummaries,
+    ValueSummary,
+} from './game-data'
 
 export function generateField(): ValueOptions[][] {
-    if (generated) return fieldArraySave
+    if (gameData.getState().generated) return gameData.getState().fieldArraySave
     const fieldArray: ValueOptions[][] = []
     const values = [1, 2, 3, 0]
-    totalAchievablePoints = 0
+    gameData.setState({ remainingPoints: 0 })
     fieldArray.pop()
 
-    for (let i = 0; i < size; i++) {
+    for (let i = 0; i < 5; i++) {
         const row = []
-        for (let ii = 0; ii < size; ii++) {
+        for (let ii = 0; ii < 5; ii++) {
             const generatedValue =
                 values[Math.floor(Math.random() * values.length)]
             if (generatedValue > 1) {
-                totalAchievablePoints = totalAchievablePoints + generatedValue
+                gameData.setState({
+                    remainingPoints:
+                        gameData.getState().remainingPoints + generatedValue,
+                })
             }
             row.push(generatedValue)
         }
         fieldArray.push(row as ValueOptions[])
     }
-    fieldArraySave = fieldArray
-    generated = true
+    gameData.setState({ fieldArraySave: fieldArray })
+    gameData.setState({ generated: true })
     return fieldArray
-}
-
-export interface ValueSummary {
-    rows: ValueSummaries[]
-    cols: ValueSummaries[]
-}
-
-export interface ValueSummaries {
-    points: number
-    bombs: number
 }
 
 function getBombAmount(arr: number[]) {
@@ -53,9 +43,9 @@ function getPointAmount(arr: number[]) {
 export function getRowAndColumnTotals(field: ValueOptions[][]): ValueSummary {
     const rows: ValueSummaries[] = []
     const cols: ValueSummaries[] = []
-    for (let i = 0; i < size; i++) {
+    for (let i = 0; i < 5; i++) {
         const columnValues = []
-        for (let ii = 0; ii < size; ii++) {
+        for (let ii = 0; ii < 5; ii++) {
             columnValues.push(field[ii][i])
         }
 
@@ -67,21 +57,4 @@ export function getRowAndColumnTotals(field: ValueOptions[][]): ValueSummary {
         rows.push({ points: rowPoints, bombs: rowBombs })
     }
     return { rows, cols }
-}
-
-export function setGameStatus(status: 'gameover' | 'running' | 'win') {
-    const event = new CustomEvent('game-status', { detail: status })
-    document.dispatchEvent(event)
-    gameStatus = status
-}
-
-export function getGameStatus() {
-    return gameStatus
-}
-
-export function reduceAchievablePointsBy(amount: number) {
-    totalAchievablePoints = totalAchievablePoints - amount
-    if (totalAchievablePoints === 0) {
-        setGameStatus('win')
-    }
 }
