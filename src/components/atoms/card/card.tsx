@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import {
-    ValueOptions,
+    gameData,
     setGameStatus,
-    getGameStatus,
-    reduceAchievablePointsBy,
+    ValueOptions,
 } from '../../../scripts/game-data'
 import './card.css'
 
@@ -24,12 +23,19 @@ export const Card = ({ value }: CardProps) => {
 
     function awaitShown() {
         setShown(true)
-        if (value === 0 && getGameStatus() === 'running') {
+        const status = gameData.getState().gameStatus
+        if (value === 0 && status === 'running') {
             setGameStatus('gameover')
             return
         }
         if (value > 1) {
-            reduceAchievablePointsBy(value)
+            gameData.setState((state) => ({
+                remainingPoints: state.remainingPoints - value,
+            }))
+            console.log(gameData.getState().remainingPoints)
+            if (gameData.getState().remainingPoints === 0) {
+                setGameStatus('win')
+            }
         }
     }
 

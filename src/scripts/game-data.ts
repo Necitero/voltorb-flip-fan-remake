@@ -1,34 +1,23 @@
 import { create } from 'zustand'
 
 export type ValueOptions = 1 | 2 | 3 | 0
+type GameStatuses = 'running' | 'gameover' | 'win'
 interface gameDataProperties {
-    gameStatus: 'running' | 'gameover' | 'win'
+    gameStatus: GameStatuses
     remainingPoints: number
     generated: boolean
     fieldArraySave: ValueOptions[][]
+    setGenerated: () => void
 }
 
-export const gameData = create<gameDataProperties>()(() => ({
+export const gameData = create<gameDataProperties>()((set) => ({
     gameStatus: 'running',
     remainingPoints: 0,
     generated: false,
     fieldArraySave: [],
+    setGenerated: () => set({ generated: true }),
 }))
 
-export function setGameStatus(status: 'gameover' | 'running' | 'win') {
+export function setGameStatus(status: GameStatuses) {
     gameData.setState({ gameStatus: status })
-    console.log(gameData.getState().gameStatus)
-}
-
-export function getGameStatus() {
-    return gameData.getState().gameStatus
-}
-
-export function reduceAchievablePointsBy(amount: number) {
-    gameData.setState({
-        remainingPoints: gameData.getState().remainingPoints - amount,
-    })
-    if (gameData.getState().remainingPoints === 0) {
-        setGameStatus('win')
-    }
 }
