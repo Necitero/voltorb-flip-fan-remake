@@ -1,18 +1,16 @@
-// interface FieldItems {}
+import { gameData, ValueOptions } from '../App'
 
 const size = 5
-let gameStatus: 'running' | 'gameover' | 'win' = 'running'
-let totalAchievablePoints: number = 0
-let fieldArraySave: ValueOptions[][] = []
-let generated: boolean = false
-
-export type ValueOptions = 1 | 2 | 3 | 0
 
 export function generateField(): ValueOptions[][] {
-    if (generated) return fieldArraySave
+    console.log(
+        'generated',
+        gameData((state) => state.generated)
+    )
+    if (gameData.getState().generated) return gameData.getState().fieldArraySave
     const fieldArray: ValueOptions[][] = []
     const values = [1, 2, 3, 0]
-    totalAchievablePoints = 0
+    gameData.setState({ remainingPoints: 0 })
     fieldArray.pop()
 
     for (let i = 0; i < size; i++) {
@@ -21,14 +19,17 @@ export function generateField(): ValueOptions[][] {
             const generatedValue =
                 values[Math.floor(Math.random() * values.length)]
             if (generatedValue > 1) {
-                totalAchievablePoints = totalAchievablePoints + generatedValue
+                gameData.setState({
+                    remainingPoints:
+                        gameData.getState().remainingPoints + generatedValue,
+                })
             }
             row.push(generatedValue)
         }
         fieldArray.push(row as ValueOptions[])
     }
-    fieldArraySave = fieldArray
-    generated = true
+    gameData.setState({ fieldArraySave: fieldArray })
+    gameData.setState({ generated: true })
     return fieldArray
 }
 
@@ -70,18 +71,19 @@ export function getRowAndColumnTotals(field: ValueOptions[][]): ValueSummary {
 }
 
 export function setGameStatus(status: 'gameover' | 'running' | 'win') {
-    const event = new CustomEvent('game-status', { detail: status })
-    document.dispatchEvent(event)
-    gameStatus = status
+    gameData.setState({ gameStatus: status })
+    console.log(gameData.getState().gameStatus)
 }
 
 export function getGameStatus() {
-    return gameStatus
+    return gameData.getState().gameStatus
 }
 
 export function reduceAchievablePointsBy(amount: number) {
-    totalAchievablePoints = totalAchievablePoints - amount
-    if (totalAchievablePoints === 0) {
+    gameData.setState({
+        remainingPoints: gameData.getState().remainingPoints - amount,
+    })
+    if (gameData.getState().remainingPoints === 0) {
         setGameStatus('win')
     }
 }
